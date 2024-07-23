@@ -1,8 +1,10 @@
 package com.collections.main;
 
+import com.collections.datastructures.DoublyLinkedList;
 import com.collections.datastructures.LinkedList;
 import com.collections.datastructures.Queue;
 import com.collections.datastructures.Stack;
+import com.collections.interfaces.IDoublyLinkedList;
 import com.collections.interfaces.ILinkedList;
 import com.collections.interfaces.IQueue;
 import com.collections.interfaces.IStack;
@@ -36,9 +38,13 @@ public class Main {
                     handleOperations(new LinkedList<>(), scanner, dataType);
                     break;
                 case 2:
+                    handleOperations(new DoublyLinkedList<>(), scanner, dataType);
+                    break;
+               
+                case 3:
                     handleOperations(new Stack<>(), scanner, dataType);
                     break;
-                case 3:
+                case 4:
                     handleOperations(new Queue<>(), scanner, dataType);
                     break;
                 default:
@@ -52,8 +58,9 @@ public class Main {
         System.out.println("           MAIN MENU            ");
         System.out.println("================================");
         System.out.println("1. LinkedList Operations");
-        System.out.println("2. Stack Operations");
-        System.out.println("3. Queue Operations");
+        System.out.println("2. Doubly LinkedList Operations");
+        System.out.println("3. Stack Operations");
+        System.out.println("4. Queue Operations");
         System.out.println("0. Exit");
         System.out.print("Enter your choice: ");
     }
@@ -91,11 +98,19 @@ public class Main {
     }
 
     private static <T> void handleOperations(Object structure, Scanner scanner, Class<T> dataType) {
-        if (structure instanceof ILinkedList) {
+        if (structure instanceof ILinkedList)
+        {
             linkedListOperations((ILinkedList<T>) structure, scanner, dataType);          // you are having linked list in your data type
-        } else if (structure instanceof IStack) {
+        }
+        else if (structure instanceof IDoublyLinkedList) {
+            DoublylinkedListOperations((IDoublyLinkedList<T>) structure, scanner, dataType);
+        }
+        else if (structure instanceof IStack)
+        {
             stackOperations((IStack<T>) structure, scanner, dataType);
-        } else if (structure instanceof IQueue) {
+        } 
+        else if (structure instanceof IQueue)
+        {
             queueOperations((IQueue<T>) structure, scanner, dataType);
         }
     }
@@ -162,6 +177,72 @@ public class Main {
         
         
     }
+    
+    private static <T> void DoublylinkedListOperations(IDoublyLinkedList<T> DoublylinkedList, Scanner scanner, Class<T> dataType) {
+        while (true) {
+            printDoublyLinkedListMenu();
+            int choice = getUserInput(scanner);
+
+            switch (choice) {
+                case 1:
+                	DoublylinkedList.insertAtEnd(getValueFromUser(scanner, dataType));
+                    break;
+                case 2:
+                	DoublylinkedList.insertAtBeginning(getValueFromUser(scanner, dataType));
+                    break;
+                    
+                case 3:
+                	
+                    System.out.print("Enter position in which you want to add: ");
+                    int position = scanner.nextInt();
+                    DoublylinkedList.insertBetween(getValueFromUser(scanner, dataType),position);
+                    break;
+                case 4:
+                	DoublylinkedList.printLinkedList();
+                    break;
+                    
+                    
+                case 5:
+                	System.out.print("Enter position you want to delete: ");
+                    int position1 = scanner.nextInt();
+                	DoublylinkedList.deleteNode(position1);
+                    break;
+                case 6:
+                	DoublylinkedList.deleteNodeAtBeginning();
+                    break;
+                    
+                case 7:
+                	DoublylinkedList.deleteNodeAtEnd();
+                    break;
+                
+                    
+                case 0:
+                    return;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+
+    private static void printDoublyLinkedListMenu() {
+        System.out.println("================================");
+        System.out.println("       DOUBLY LINKEDLIST MENU          ");
+        System.out.println("================================");
+        
+        System.out.println("1. Add End");
+        System.out.println("2. Add First");
+        System.out.println("3.Add Between");
+        System.out.println("4. Display");
+        System.out.println("5. Remove");
+        System.out.println("6. Remove node at beginning");
+        System.out.println("7. Remove node at End");
+        System.out.println("0. Back to Main Menu");
+        System.out.print("Enter your choice: ");
+        
+        
+    }
+    
+    
 
     private static <T> void stackOperations(IStack<T> stack, Scanner scanner, Class<T> dataType) {
         while (true) {

@@ -129,7 +129,7 @@ public class DoublyLinkedList<T> implements IDoublyLinkedList<T>
 	}
 
 	@Override
-	public void deleteNode(int position) 
+	public void deleteNode(int position1) 
 	{
 		if (head == null) {
             System.out.println("Linked list is empty");
@@ -140,7 +140,7 @@ public class DoublyLinkedList<T> implements IDoublyLinkedList<T>
         	
         	Node<T> temp2 = head;
         	Node<T> ptr2 = temp2.next;
-        	for(int i=0;i<(position-2);i++)
+        	for(int i=0;i<(position1-2);i++)
         	{
         		temp2 = ptr2;
         		ptr2 = ptr2.next;

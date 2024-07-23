@@ -8,7 +8,7 @@ public interface IDoublyLinkedList<T>
     public void printLinkedList();
     public void deleteNodeAtBeginning();
     public void deleteNodeAtEnd();
-    public void deleteNode(int position);
+    public void deleteNode(int position1);
    // int size();
     
 
